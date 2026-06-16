@@ -71,11 +71,13 @@ router.post('/', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'model3d
     
     // If files were uploaded
     if (req.files) {
+      const protocol = req.protocol;
+      const host = req.get('host');
       if (req.files['image']) {
-        imageUrl = `http://localhost:5000/uploads/${req.files['image'][0].filename}`;
+        imageUrl = `${protocol}://${host}/uploads/${req.files['image'][0].filename}`;
       }
       if (req.files['model3d']) {
-        model3dUrl = `http://localhost:5000/uploads/${req.files['model3d'][0].filename}`;
+        model3dUrl = `${protocol}://${host}/uploads/${req.files['model3d'][0].filename}`;
       }
     }
     
@@ -117,11 +119,13 @@ router.put('/:id', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'model
       let model3dUrl = products[productIndex].model3d || '';
       
       if (req.files) {
+        const protocol = req.protocol;
+        const host = req.get('host');
         if (req.files['image']) {
-          imageUrl = `http://localhost:5000/uploads/${req.files['image'][0].filename}`;
+          imageUrl = `${protocol}://${host}/uploads/${req.files['image'][0].filename}`;
         }
         if (req.files['model3d']) {
-          model3dUrl = `http://localhost:5000/uploads/${req.files['model3d'][0].filename}`;
+          model3dUrl = `${protocol}://${host}/uploads/${req.files['model3d'][0].filename}`;
         }
       }
 
