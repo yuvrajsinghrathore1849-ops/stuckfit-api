@@ -22,8 +22,14 @@ app.use(cors({
 }));
 app.use(express.json());
 
+import fs from 'fs';
+
 const __dirname = path.resolve();
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+const uploadsDir = path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadsDir)) {
+  fs.mkdirSync(uploadsDir);
+}
+app.use('/uploads', express.static(uploadsDir));
 
 // Fallback to local MongoDB if no URI is provided in .env
 const MONGO_URI = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/stuckfit';
