@@ -3,6 +3,7 @@ import path from 'path';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import fs from 'fs';
 import productRoutes from './routes/productRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import userRoutes from './routes/userRoutes.js';
@@ -21,8 +22,6 @@ app.use(cors({
   credentials: true
 }));
 app.use(express.json());
-
-import fs from 'fs';
 
 const __dirname = path.resolve();
 const uploadsDir = path.join(__dirname, 'uploads');
